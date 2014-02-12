@@ -30,3 +30,10 @@ attribute "newrelic/application_monitoring/license",
   :description => "New Relic App Monitoring License",
   :required => "required",
   :recipes => [ "newrelic::php-agent" ]
+
+attribute "newrelic/application_monitoring/appname",
+  :display_name => "New Relic App Name",
+  :description => "New Relic App Name",
+  :required => "optional",
+  :default => "PHP Application",
+  :recipes => [ "newrelic::php-agent", "newrelic::default" ]
