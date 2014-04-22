@@ -27,6 +27,15 @@ recipe 'newrelic::python-agent', 'Installs the New Relic Python agent.'
 recipe 'newrelic::ruby-agent', 'Installs the New Relic Ruby agent.'
 recipe 'newrelic::meetme-plugin', 'Installs the New Relic MeetMe plugin.'
 
+app_monitoring_recipes = [
+  'newrelic::dotnet-agent',
+  'newrelic::java-agent',
+  'newrelic::nodejs-agent',
+  'newrelic::php-agent',
+  'newrelic::python-agent',
+  'newrelic::ruby-agent'
+] 
+
 attribute "newrelic/server_monitoring/license",
   :display_name => "New Relic Server Monitoring License", 
   :description => "New Relic Server Monitoring License",
@@ -37,11 +46,11 @@ attribute "newrelic/application_monitoring/license",
   :display_name => "New Relic App Monitoring License",
   :description => "New Relic App Monitoring License",
   :required => "required",
-  :recipes => [ "newrelic::php-agent" ]
+  :recipes => app_monitoring_recipes
 
 attribute "newrelic/application_monitoring/appname",
   :display_name => "New Relic App Name",
   :description => "New Relic App Name",
   :required => "optional",
   :default => "PHP Application",
-  :recipes => [ "newrelic::php-agent", "newrelic::default" ]
+  :recipes => [ app_monitoring_recipes, "newrelic::default" ]
