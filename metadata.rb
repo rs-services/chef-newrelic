@@ -40,7 +40,7 @@ attribute "newrelic/server_monitoring/license",
   :display_name => "New Relic Server Monitoring License", 
   :description => "New Relic Server Monitoring License",
   :required => "required",
-  :recipes => [ "newrelic::default", "newrelic::server-monitor" ]
+  :recipes => [ "newrelic::default", "newrelic::server-monitor-agent" ]
 
 attribute "newrelic/application_monitoring/license",
   :display_name => "New Relic App Monitoring License",
