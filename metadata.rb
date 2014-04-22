@@ -28,6 +28,7 @@ recipe 'newrelic::ruby-agent', 'Installs the New Relic Ruby agent.'
 recipe 'newrelic::meetme-plugin', 'Installs the New Relic MeetMe plugin.'
 
 app_monitoring_recipes = [
+  'newrelic::default',
   'newrelic::dotnet-agent',
   'newrelic::java-agent',
   'newrelic::nodejs-agent',
@@ -52,5 +53,5 @@ attribute "newrelic/application_monitoring/appname",
   :display_name => "New Relic App Name",
   :description => "New Relic App Name",
   :required => "optional",
-  :default => "PHP Application",
-  :recipes => [ app_monitoring_recipes, "newrelic::default" ]
+  :default => "",
+  :recipes => app_monitoring_recipes
