@@ -8,6 +8,11 @@
 include_recipe 'newrelic::repository'
 
 license = node['newrelic']['application_monitoring']['license']
+user node['newrelic']['java-agent']['app_user'] do
+  comment "New Relic User"
+  shell "/bin/false"
+  action :create
+end
 
 # create the directory to install the jar into
 directory node['newrelic']['java-agent']['install_dir'] do
