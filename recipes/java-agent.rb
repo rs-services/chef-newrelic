@@ -68,6 +68,8 @@ template "#{node['newrelic']['java-agent']['install_dir']}/newrelic.yml" do
 end
 
 # execution of the install
-execute 'newrelic-install' do
-  command "java -jar #{node['newrelic']['java-agent']['install_dir']}/newrelic.jar install"
+if node['newrelic']['java-agent']['install_type'] == 'automatic'
+  execute 'newrelic-install' do
+    command "java -jar #{node['newrelic']['java-agent']['install_dir']}/newrelic.jar install"
+  end
 end
