@@ -69,5 +69,5 @@ end
 
 # execution of the install
 execute 'newrelic-install' do
-  command "sudo java -jar #{node['newrelic']['java-agent']['install_dir']}/newrelic.jar install"
+  command "java -jar #{node['newrelic']['java-agent']['install_dir']}/newrelic.jar install"
 end
