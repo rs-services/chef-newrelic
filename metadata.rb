@@ -46,7 +46,7 @@ attribute "newrelic/application_monitoring/license",
   :required => "required",
   :recipes => app_monitoring_recipes
 
-attribute "newrelic/application_monitoring/appname",
+attribute "newrelic/application_monitoring/app_name",
   :display_name => "New Relic App Name",
   :description => "New Relic App Name",
   :required => "optional",
