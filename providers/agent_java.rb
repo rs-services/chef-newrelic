@@ -81,7 +81,7 @@ end
 
 def allow_app_group_write_to_log_file_path
   path = new_resource.logfile_path
-  until path.nil? || path.empty? || path == File::SEPARATOR
+  until path.nil? || path.empty? || path == ::File::SEPARATOR
     directory path do
       group new_resource.app_group
       mode 0775
