@@ -51,3 +51,10 @@ attribute "newrelic/application_monitoring/app_name",
   :description => "New Relic App Name",
   :required => "required",
   :recipes => app_monitoring_recipes
+
+attribute "newrelic/java_agent/version",
+  :display_name => "New Relic Java Agent Version",
+  :description => "New Relic Java Agent Version",
+  :required => "optional",
+  :default => "latest",
+  :recipes => [ "newrelic::java_agent" ]
