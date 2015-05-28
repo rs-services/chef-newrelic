@@ -4,6 +4,8 @@
 #
 # Copyright 2012-2015, Escape Studios
 #
+node.default['newrelic']['application_monitoring']['logfile'] = 'newrelic_agent.log'
+node.default['newrelic']['application_monitoring']['logfile_path'] = '/opt/newrelic/java/logs'
 
 newrelic_agent_java 'Install' do
   license NewRelic.application_monitoring_license(node)
@@ -39,4 +41,5 @@ newrelic_agent_java 'Install' do
   cross_application_tracer_enable NewRelic.to_boolean(node['newrelic']['application_monitoring']['cross_application_tracer']['enable']) unless node['newrelic']['application_monitoring']['cross_application_tracer']['enable'].nil?
   thread_profiler_enable NewRelic.to_boolean(node['newrelic']['application_monitoring']['thread_profiler']['enable']) unless node['newrelic']['application_monitoring']['thread_profiler']['enable'].nil?
   labels node['newrelic']['application_monitoring']['labels'] unless node['newrelic']['application_monitoring']['labels'].nil?
+  execute_agent_action false
 end

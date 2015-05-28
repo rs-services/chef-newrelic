@@ -16,10 +16,10 @@ action :install do
   # Check license key provided
   check_license
   create_install_directory
-  agent_jar
+  jar_file = agent_jar
   generate_agent_config
   allow_app_group_write_to_log_file_path
-  install_newrelic
+  install_newrelic(jar_file)
 end
 
 action :remove do
@@ -50,20 +50,21 @@ def agent_jar
     jar_file = 'newrelic.jar'
   end
 
-  agent_jar = "#{new_resource.install_dir}/#{jar_file}"
+  agent_jar = ::File.join(new_resource.install_dir,jar_file)
   https_download = "https://download.newrelic.com/newrelic/java-agent/newrelic-agent/#{version}/#{jar_file}"
 
-  remote_file 'newrelic.jar' do
+  remote_file agent_jar do
     source https_download
     owner 'root'
     group 'root'
     mode 0664
     action :create
   end
+  return agent_jar
 end
 
 def generate_agent_config
-  new_resource.app_name = node['hostname'] if new_resource.app_name.nil?
+  #new_resource.app_name = node['hostname'] if new_resource.app_name.nil?
 
   template "#{new_resource.install_dir}/newrelic.yml" do
     cookbook new_resource.template_cookbook
@@ -80,18 +81,17 @@ end
 
 def allow_app_group_write_to_log_file_path
   path = new_resource.logfile_path
-  until path.nil? || path.empty? || path == File::SEPARATOR
+  until path.nil? || path.empty? || path == ::File::SEPARATOR
     directory path do
       group new_resource.app_group
       mode 0775
       action :create
     end
-    path = File.dirname(path)
+    path = ::File.dirname(path)
   end
 end
 
-def install_newrelic
-  jar_file = 'newrelic.jar'
+def install_newrelic(jar_file)
   if new_resource.app_location.nil?
     app_location = new_resource.install_dir
   else
