@@ -50,5 +50,4 @@ attribute "newrelic/application_monitoring/app_name",
   :display_name => "New Relic App Name",
   :description => "New Relic App Name",
   :required => "required",
-  :default => "",
   :recipes => app_monitoring_recipes
