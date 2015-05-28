@@ -16,10 +16,10 @@ action :install do
   # Check license key provided
   check_license
   create_install_directory
-  agent_jar
+  jar_file = agent_jar
   generate_agent_config
   allow_app_group_write_to_log_file_path
-  install_newrelic
+  install_newrelic(jar_file)
 end
 
 action :remove do
@@ -60,6 +60,7 @@ def agent_jar
     mode 0664
     action :create
   end
+  return agent_jar
 end
 
 def generate_agent_config
@@ -90,8 +91,7 @@ def allow_app_group_write_to_log_file_path
   end
 end
 
-def install_newrelic
-  jar_file = ::File.join(new_resource.install_dir,jar_file)
+def install_newrelic(jar_file)
   if new_resource.app_location.nil?
     app_location = new_resource.install_dir
   else
