@@ -4,6 +4,8 @@
 #
 # Copyright 2012-2015, Escape Studios
 #
+node.default['newrelic']['application_monitoring']['logfile'] = 'newrelic_agent.log'
+node.default['newrelic']['application_monitoring']['logfile_path'] = '/opt/newrelic/java/logs'
 
 newrelic_agent_java 'Install' do
   license NewRelic.application_monitoring_license(node)
