@@ -87,7 +87,7 @@ def allow_app_group_write_to_log_file_path
       mode 0775
       action :create
     end
-    path = File.dirname(path)
+    path = ::File.dirname(path)
   end
 end
 
