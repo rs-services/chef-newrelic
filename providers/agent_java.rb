@@ -50,7 +50,7 @@ def agent_jar
     jar_file = 'newrelic.jar'
   end
 
-  agent_jar = File.join(new_resource.install_dir,jar_file)
+  agent_jar = ::File.join(new_resource.install_dir,jar_file)
   https_download = "https://download.newrelic.com/newrelic/java-agent/newrelic-agent/#{version}/#{jar_file}"
 
   remote_file agent_jar do
@@ -91,7 +91,7 @@ def allow_app_group_write_to_log_file_path
 end
 
 def install_newrelic
-  jar_file = File.join(new_resource.install_dir,jar_file)
+  jar_file = ::File.join(new_resource.install_dir,jar_file)
   if new_resource.app_location.nil?
     app_location = new_resource.install_dir
   else
